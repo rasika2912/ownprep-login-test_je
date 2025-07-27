@@ -47,7 +47,7 @@ pipeline {
                 bat 'python --version'
                 bat 'pip install --upgrade pip'
 
-                // ✅ Added webdriver-manager
+                // Added webdriver-manager
                 bat 'pip install pytest pytest-html allure-pytest webdriver-manager'
             }
         }
@@ -76,3 +76,14 @@ pipeline {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
