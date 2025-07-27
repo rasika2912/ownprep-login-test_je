@@ -1,35 +1,3 @@
-
-// pipeline {
-//     agent any
-
-//     tools {
-//         python 'Python312'
-//     }
-
-//     environment {
-//         DISPLAY = ':0'
-//     }
-
-//     stages {
-//         stage('Clone Repo') {
-//             steps {
-//                 echo 'Cloned from GitHub or uploaded manually'
-//             }
-//         }
-
-//         stage('Install Dependencies') {
-//             steps {
-//                 sh 'pip install -r requirements.txt'
-//             }
-//         }
-
-//         stage('Run Test') {
-//             steps {
-//                 sh 'python test_login_dropdown.py'
-//             }
-//         }
-//     }
-// }
 pipeline {
     agent any
 
@@ -44,8 +12,11 @@ pipeline {
 
         stage('Run Selenium Tests') {
             steps {
-                bat 'pytest test_ownprep_login_and_dropdown.py --alluredir=report --junitxml=result.xml --html=reports.html'
+                // Optional: Show files for debugging
+                bat 'dir'
 
+                // ✅ Corrected file name
+                bat 'pytest test_login_dropdown.py --alluredir=report --junitxml=result.xml --html=reports.html'
             }
         }
 
