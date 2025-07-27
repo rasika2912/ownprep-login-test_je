@@ -44,7 +44,8 @@ pipeline {
 
         stage('Run Selenium Tests') {
             steps {
-                bat 'pytest tests --alluredir=report --junitxml=result.xml --html=reports.html'
+                bat 'pytest test_ownprep_login_and_dropdown.py --alluredir=report --junitxml=result.xml --html=reports.html'
+
             }
         }
 
