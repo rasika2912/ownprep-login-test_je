@@ -77,7 +77,7 @@ def test_ownprep_login_and_dropdown():
         print("No results found!")
 
     driver.quit()
-  # new
+  
 
 if __name__ == "__main__":
     test_ownprep_login_and_dropdown()
