@@ -76,6 +76,10 @@ def test_ownprep_login_and_dropdown():
         print("Course found!")
     except NoSuchElementException:
         print("No results found!")
+    time.sleep(1)
+        
+    driver.get("http://3.6.185.230/courses")
+    time.sleep(1)
 
     driver.quit()
 
