@@ -77,9 +77,7 @@ def test_ownprep_login_and_dropdown():
         print("No results found!")
 
     driver.quit()
-  #jobs
-    page.goto("http://3.6.185.230/jobs")
-    time.sleep(2)
+  
 
 if __name__ == "__main__":
     test_ownprep_login_and_dropdown()
