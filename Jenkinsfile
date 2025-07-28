@@ -6,16 +6,15 @@
 //             steps {
 //                 bat 'python --version'
 //                 bat 'pip install --upgrade pip'
-//                 bat 'pip install pytest pytest-html allure-pytest'
+
+//                 // Added webdriver-manager
+//                 bat 'pip install pytest pytest-html allure-pytest webdriver-manager'
 //             }
 //         }
 
 //         stage('Run Selenium Tests') {
 //             steps {
-//                 // Optional: Show files for debugging
 //                 bat 'dir'
-
-//                 // ✅ Corrected file name
 //                 bat 'pytest test_login_dropdown.py --alluredir=report --junitxml=result.xml --html=reports.html'
 //             }
 //         }
@@ -38,6 +37,7 @@
 //     }
 // }
 
+<<<<<<< HEAD
 // pipeline {
 //     agent any
 
@@ -77,6 +77,8 @@
 //     }
 // }
 
+=======
+>>>>>>> 5630782 (Added working Jenkinsfile)
 
 pipeline {
     agent any
@@ -137,6 +139,7 @@ pipeline {
 
 
 
+<<<<<<< HEAD
 
 
 
@@ -147,3 +150,5 @@ pipeline {
 
 
 
+=======
+>>>>>>> 5630782 (Added working Jenkinsfile)
