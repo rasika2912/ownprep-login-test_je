@@ -1,10 +1,10 @@
-# from selenium import webdriver
-# import time
-# from selenium.webdriver.chrome.service import Service as ChromeService
-# from selenium.webdriver.common.by import By
-# from webdriver_manager.chrome import ChromeDriverManager
-# from selenium.common.exceptions import NoSuchElementException
-# from selenium.webdriver.support.ui import Select
+from selenium import webdriver
+import time
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.common.by import By
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.support.ui import Select
 
 # def test_ownprep_login_and_dropdown():
 #     options = webdriver.ChromeOptions()
@@ -70,13 +70,13 @@
 
 #     time.sleep(2)
 
-#     try:
-#         result = driver.find_element(By.XPATH, "//div[contains(text(), 'Aptitude')]")
-#         print("Course found!")
-#     except NoSuchElementException:
-#         print("No results found!")
+    try:
+        result = driver.find_element(By.XPATH, "//div[contains(text(), 'Aptitude')]")
+        print("Course found!")
+    except NoSuchElementException:
+        print("No results found!")
 
-#     driver.quit()
+    driver.quit()
   
 
 # if __name__ == "__main__":
