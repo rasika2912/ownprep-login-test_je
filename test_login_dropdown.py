@@ -70,13 +70,13 @@ from selenium.webdriver.support.ui import Select
 
 #     time.sleep(2)
 
-    try:
-        result = driver.find_element(By.XPATH, "//div[contains(text(), 'Aptitude')]")
-        print("Course found!")
-    except NoSuchElementException:
-        print("No results found!")
+    # try:
+    #     result = driver.find_element(By.XPATH, "//div[contains(text(), 'Aptitude')]")
+    #     print("Course found!")
+    # except NoSuchElementException:
+    #     print("No results found!")
 
-    driver.quit()
+    # driver.quit()
   
 
 # if __name__ == "__main__":

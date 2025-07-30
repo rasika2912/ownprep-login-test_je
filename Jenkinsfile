@@ -78,11 +78,7 @@
 //     }
 // }
 
-=======
->>>>>>> 5630782 (Added working Jenkinsfile)
 
-=======
->>>>>>> 4694ee3 (Fix Jenkinsfile checkout syntax)
 // pipeline {
 //     agent any
 
@@ -134,11 +130,12 @@
 //     }
 // }
 
+
 pipeline {
     agent any
 
     tools {
-        python 'Python3'  // Jenkins me defined Python tool ka naam (manage Jenkins > Global Tool Configurations)
+        python 'Python3'  // Make sure yeh Python Jenkins me configured hai
     }
 
     stages {
@@ -165,7 +162,7 @@ pipeline {
 
         stage('Run Selenium Tests') {
             steps {
-                bat 'pytest test_login.py test_login_dropdown.py --alluredir=allure-results --junitxml=results.xml --html=reports.html'
+                bat 'pytest test_login.py test_login_dropdown.py --alluredir=allure-results --junitxml=results.xml --html=reports/reports.html --self-contained-html'
             }
         }
 
@@ -178,25 +175,17 @@ pipeline {
         stage('Publish HTML Report') {
             steps {
                 publishHTML target: [
-                    allowMissing: false,
-                    alwaysLinkToLastBuild: true,
-                    keepAll: true,
-                    reportDir: '.',
+                    reportDir: 'reports',
                     reportFiles: 'reports.html',
-                    reportName: 'Test Execution Report'
+                    reportName: 'Selenium Test Report',
+                    keepAll: true,
+                    alwaysLinkToLastBuild: true,
+                    allowMissing: false
                 ]
             }
         }
     }
 }
-
-              
-
-
-
-
-
-
 
 
 
