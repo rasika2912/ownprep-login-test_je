@@ -187,65 +187,121 @@
 //     }
 // }
 
+// pipeline {
+//     agent any
+
+//     tools {
+//         python 'Python3'  // Ensure 'Python3' is set in Jenkins Global Tools
+//     }
+
+//     stages {
+//         stage('Checkout') {
+//             steps {
+//                 checkout([
+//                     $class: 'GitSCM',
+//                     branches: [[name: '*/main']],
+//                     userRemoteConfigs: [[
+//                         credentialsId: 'newtoken',
+//                         url: 'https://github.com/rasika2912/ownprep-login-test_je.git'
+//                     ]]
+//                 ])
+//             }
+//         }
+
+//         stage('Install Dependencies') {
+//             steps {
+//                 bat 'python --version'
+//                 bat 'pip install --upgrade pip'
+//                 bat 'pip install -r requirements.txt'
+//             }
+//         }
+
+//         stage('Run Selenium Tests') {
+//             steps {
+//                 bat 'pytest test_login_dropdown.py --alluredir=allure-results --junitxml=results.xml --html=reports/reports.html --self-contained-html'
+//             }
+//         }
+
+//         stage('Allure Report') {
+//             steps {
+//                 allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+//             }
+//         }
+
+//         stage('Publish HTML Report') {
+//             steps {
+//                 publishHTML target: [
+//                     reportDir: 'reports',
+//                     reportFiles: 'reports.html',
+//                     reportName: 'Selenium Test Report',
+//                     keepAll: true,
+//                     alwaysLinkToLastBuild: true,
+//                     allowMissing: false
+//                 ]
+//             }
+//         }
+//     }
+
+//     post {
+//         always {
+//             // Optional: Archive screenshots or logs
+//             archiveArtifacts artifacts: '**/*.png', allowEmptyArchive: true
+//         }
+//     }
+// }
+
 pipeline {
     agent any
 
-    tools {
-        python 'Python3'  // Ensure 'Python3' is set in Jenkins Global Tools
+    environment {
+        REPORT_DIR = "reports"
     }
 
     stages {
-        stage('Checkout') {
+        stage('Checkout Code') {
             steps {
-                checkout([
-                    $class: 'GitSCM',
-                    branches: [[name: '*/main']],
-                    userRemoteConfigs: [[
-                        credentialsId: 'newtoken',
-                        url: 'https://github.com/rasika2912/ownprep-login-test_je.git'
-                    ]]
-                ])
+                git branch: 'main', url: 'https://github.com/rasika2912/ownprep-login-test_je.git'
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                bat 'python --version'
-                bat 'pip install --upgrade pip'
-                bat 'pip install -r requirements.txt'
+                bat '''
+                    python -m venv venv
+                    call venv\\Scripts\\activate
+                    pip install --upgrade pip
+                    pip install --default-timeout=100 --no-cache-dir -r requirements.txt
+                '''
             }
         }
 
-        stage('Run Selenium Tests') {
+        stage('Run All Pytests') {
             steps {
-                bat 'pytest test_login_dropdown.py --alluredir=allure-results --junitxml=results.xml --html=reports/reports.html --self-contained-html'
-            }
-        }
-
-        stage('Allure Report') {
-            steps {
-                allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+                bat '''
+                    call venv\\Scripts\\activate
+                    pytest tests/ --html=reports\\report.html --self-contained-html
+                '''
             }
         }
 
         stage('Publish HTML Report') {
             steps {
-                publishHTML target: [
-                    reportDir: 'reports',
-                    reportFiles: 'reports.html',
-                    reportName: 'Selenium Test Report',
-                    keepAll: true,
+                publishHTML([
+                    allowMissing: false,
                     alwaysLinkToLastBuild: true,
-                    allowMissing: false
-                ]
+                    keepAll: true,
+                    reportDir: 'reports',
+                    reportFiles: 'report.html',
+                    reportName: 'Test Report'
+                ])
             }
         }
     }
 
     post {
         always {
-            // Optional: Archive screenshots or logs
-            archiveArtifacts artifacts: '**/*.png', allowEmptyArchive: true
+            echo 'Cleaning up workspace...'
+            deleteDir()
         }
     }
 }
