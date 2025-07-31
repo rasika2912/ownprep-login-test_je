@@ -127,7 +127,7 @@ signIn_button = WebDriverWait(driver, 20).until(
 )
 signIn_button.click()
 
-driver.find_element(By.ID, "email").send_keys("automation@test.com")
+driver.find_element(By.ID, "email").send_keys("automation@test")
 driver.find_element(By.ID, "password").send_keys("abcd1234")
 driver.find_element(By. XPATH, "//button[@type='submit']").click()
 
