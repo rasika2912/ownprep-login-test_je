@@ -279,7 +279,8 @@ pipeline {
             steps {
                 bat '''
                     call venv\\Scripts\\activate
-                    pytest --html=reports\\report.html --self-contained-html
+                    pytest test_login_dropdown.py --html=reports/report.html --self-contained-html
+
                 '''
             }
         }
