@@ -112,8 +112,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, ElementClickInterceptedException
 
-driver = webdriver.Chrome()
 
+driver = webdriver.Chrome()
 driver.get("https://petroatl.com/")
 driver.maximize_window()
 
