@@ -270,7 +270,7 @@ pipeline {
                     python -m venv venv
                     call venv\\Scripts\\activate
                     pip install --upgrade pip
-                    pip install --default-timeout=100 --no-cache-dir -r requirements.txt
+                    pip install -r requirements.txt
                 '''
             }
         }
@@ -279,7 +279,7 @@ pipeline {
             steps {
                 bat '''
                     call venv\\Scripts\\activate
-                    pytest tests/ --html=reports\\report.html --self-contained-html
+                    pytest --html=reports\\report.html --self-contained-html
                 '''
             }
         }
@@ -292,22 +292,9 @@ pipeline {
                     keepAll: true,
                     reportDir: 'reports',
                     reportFiles: 'report.html',
-                    reportName: 'Test Report'
+                    reportName: 'Pytest HTML Report'
                 ])
             }
         }
     }
-
-    post {
-        always {
-            echo 'Cleaning up workspace...'
-            deleteDir()
-        }
-    }
 }
-
-
-
-
-
-
