@@ -260,7 +260,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, ElementClickInterceptedException
 
-def test_login_workflow():  # ✅ Wrap everything inside this
+def test_login_workflow():  
     driver = webdriver.Chrome()
     driver.get("https://petroatl.com/")
     driver.maximize_window()
@@ -275,7 +275,7 @@ def test_login_workflow():  # ✅ Wrap everything inside this
     )
     signIn_button.click()
 
-    driver.find_element(By.ID, "email").send_keys("automation@test.com")
+    driver.find_element(By.ID, "email").send_keys("automation@test")
     driver.find_element(By.ID, "password").send_keys("abcd1234")
     driver.find_element(By.XPATH, "//button[@type='submit']").click()
 
