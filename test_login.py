@@ -415,7 +415,7 @@ from selenium.common.exceptions import TimeoutException, ElementClickIntercepted
 def test_login_workflow():
     # ✅ Setup Chrome options
     chrome_options = Options()
-    chrome_options.headless = True  # GUI will be visible
+    chrome_options.headless = False  # GUI will be visible
     chrome_options.add_argument("--start-maximized")
     chrome_options.add_argument("--disable-infobars")
     chrome_options.add_argument("--disable-extensions")
