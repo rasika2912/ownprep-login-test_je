@@ -37,8 +37,7 @@
 //     }
 // }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 // pipeline {
 //     agent any
 
