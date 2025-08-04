@@ -1,5 +1,5 @@
 import time
-import pytest  # ✅ Add this
+import pytest
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -149,7 +149,7 @@ def test_login_workflow():
     time.sleep(5)
     driver.quit()
 
-# For local script run (optional)
+
 if __name__ == "__main__":
     test_login_workflow()
 
